@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignUp from '../screens/signUp';
 import LogIn from '../screens/logIn';
+import Connection from '../screens/connection';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +12,7 @@ export default function AuthenticationNavigator({ route, navigation }) {
 
     return(
         <Stack.Navigator 
-            initialRouteName="Log In"
+            initialRouteName="Connection"
             headerMode='none'
         >
         <Stack.Screen 
@@ -24,6 +25,12 @@ export default function AuthenticationNavigator({ route, navigation }) {
             component={LogIn}
             initialParams={{onClick: onClick}}
             />
+        <Stack.Screen
+            name="Connection"
+            component={Connection}
+            initialParams={{onClick: onClick}}
+        />
+        
         </Stack.Navigator>
     )
 }
