@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignIn from '../screens/signIn';
+import SignUp from '../screens/signUp';
 import LogIn from '../screens/logIn';
 
 const Stack = createStackNavigator();
@@ -15,8 +15,8 @@ export default function AuthenticationNavigator({ route, navigation }) {
             headerMode='none'
         >
         <Stack.Screen 
-            name="Sign In" 
-            component={SignIn}
+            name="Sign Up" 
+            component={SignUp}
             />
         <Stack.Screen 
             name="Log In" 
