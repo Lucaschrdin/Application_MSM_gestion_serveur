@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Code appli\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Application\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\lucas\\.gradle\\caches\\transforms-2\\files-2.1\\dcc76cd07ebcaa6166d73d461b1667fa\\cardview-1.0.0\\res\\values\\values.xml",
@@ -116,25 +116,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Code appli\\node_modules\\expo-splash-screen\\android\\build\\intermediates\\packaged_res\\debug\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,113",
-                        "endLines": "2,7",
-                        "endColumns": "57,10",
-                        "endOffsets": "108,419"
-                    },
-                    "to": {
-                        "startLines": "198,3238",
-                        "startColumns": "4,4",
-                        "startOffsets": "12667,218993",
-                        "endLines": "198,3242",
-                        "endColumns": "57,10",
-                        "endOffsets": "12720,219299"
-                    }
-                },
-                {
                     "source": "C:\\Users\\lucas\\.gradle\\caches\\transforms-2\\files-2.1\\5e5754defa7ec1b661ffd11a17838c67\\fragment-1.2.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,9",
@@ -151,23 +132,6 @@
                         "endLines": "582,625,5879,5883",
                         "endColumns": "56,63,24,24",
                         "endOffsets": "37803,39927,377630,377779"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Code appli\\android\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "55",
-                        "endOffsets": "67"
-                    },
-                    "to": {
-                        "startLines": "681",
-                        "startColumns": "4",
-                        "startOffsets": "43637",
-                        "endColumns": "55",
-                        "endOffsets": "43688"
                     }
                 },
                 {
@@ -188,22 +152,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Code appli\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Application\\android\\app\\build\\generated\\res\\resValues\\debug\\values\\gradleResValues.xml",
                     "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "54",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "234"
+                        "startLines": "6,8",
+                        "startColumns": "4,4",
+                        "startOffsets": "161,269",
+                        "endColumns": "63,68",
+                        "endOffsets": "220,333"
                     },
                     "to": {
-                        "startLines": "811",
-                        "startColumns": "4",
-                        "startOffsets": "59116",
-                        "endLines": "814",
-                        "endColumns": "12",
-                        "endOffsets": "59296"
+                        "startLines": "645,646",
+                        "startColumns": "4,4",
+                        "startOffsets": "41118,41182",
+                        "endColumns": "63,68",
+                        "endOffsets": "41177,41246"
                     }
                 },
                 {
@@ -226,20 +188,22 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Code appli\\android\\app\\build\\generated\\res\\resValues\\debug\\values\\gradleResValues.xml",
+                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Application\\node_modules\\expo-splash-screen\\android\\build\\intermediates\\packaged_res\\debug\\values\\values.xml",
                     "from": {
-                        "startLines": "6,8",
+                        "startLines": "2,3",
                         "startColumns": "4,4",
-                        "startOffsets": "161,269",
-                        "endColumns": "63,68",
-                        "endOffsets": "220,333"
+                        "startOffsets": "55,113",
+                        "endLines": "2,7",
+                        "endColumns": "57,10",
+                        "endOffsets": "108,419"
                     },
                     "to": {
-                        "startLines": "645,646",
+                        "startLines": "198,3238",
                         "startColumns": "4,4",
-                        "startOffsets": "41118,41182",
-                        "endColumns": "63,68",
-                        "endOffsets": "41177,41246"
+                        "startOffsets": "12667,218993",
+                        "endLines": "198,3242",
+                        "endColumns": "57,10",
+                        "endOffsets": "12720,219299"
                     }
                 },
                 {
@@ -274,6 +238,42 @@
                         "startOffsets": "37808,37848,38299,38481,38536,39420,39474,39526,39575,39636",
                         "endColumns": "39,46,42,54,46,53,51,48,60,49",
                         "endOffsets": "37843,37890,38337,38531,38578,39469,39521,39570,39631,39681"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Application\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "54",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "234"
+                    },
+                    "to": {
+                        "startLines": "811",
+                        "startColumns": "4",
+                        "startOffsets": "59116",
+                        "endLines": "814",
+                        "endColumns": "12",
+                        "endOffsets": "59296"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Application\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "55",
+                        "endOffsets": "67"
+                    },
+                    "to": {
+                        "startLines": "681",
+                        "startColumns": "4",
+                        "startOffsets": "43637",
+                        "endColumns": "55",
+                        "endOffsets": "43688"
                     }
                 },
                 {

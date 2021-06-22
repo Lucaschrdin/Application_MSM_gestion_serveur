@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Code appli\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
+            "outputFile": "C:\\Users\\lucas\\Desktop\\Stage MSM\\Application\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
             "map": [
                 {
                     "source": "C:\\Users\\lucas\\.gradle\\caches\\transforms-2\\files-2.1\\93e99cc524f9e4f775937ead40ad032e\\appcompat-1.2.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
