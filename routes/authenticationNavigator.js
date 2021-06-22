@@ -17,6 +17,7 @@ export default function AuthenticationNavigator({ route, navigation }) {
         <Stack.Screen 
             name="Sign Up" 
             component={SignUp}
+            initialParams={{onClick: onClick}}
             />
         <Stack.Screen 
             name="Log In" 
