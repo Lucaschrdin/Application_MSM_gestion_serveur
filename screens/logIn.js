@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, View, Text, TouchableOpacity, Image, } from 'react-native';
 import { globalStyles } from '../styles/global';
+import Button from '../components/button';
 
 export default function LogIn({ route, navigation }) {
 
@@ -9,6 +10,7 @@ export default function LogIn({ route, navigation }) {
     return(
         <SafeAreaView style={globalStyles.signInContainer}>
             <View  style={styles.header}>
+                <Button />
                 <Image source={require('../assets/logo_msm_no_background.png')} style={styles.logo}/>
             </View>
             <View style={styles.buttonsContainer}>
