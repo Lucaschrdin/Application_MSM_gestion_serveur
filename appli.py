@@ -1,36 +1,21 @@
-from datetime import date
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
+from ftplib import FTP
 
-app = Flask(__name__)
+ftp = FTP('192.168.1.14')
+ftp.login(user='lucas.chardin@hotmail.fr', passwd = 'LAROUSSE')
 
-app.config['SQLALCHEMY_DATZBASE_URI'] = 'mysql://root:''@localhost:5000/flask'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+ftp.cwd('/hvhgkcytkhdyrj/')
 
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
+print(ftp.retrlines('LIST')  )
 
-class Member(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    Username = db.Column(db.String(20))
-    Password = db.Column(db.String(50))
-    # Date =  db.Column(db.Integer, default = )
+def grabFile():
 
-    def __init__(self, Username, Password):
-        self.Username = Username
-        self.Password = Password 
+    filename = 'TEST.txt'
 
-class MemberSchema(ma.Schema):
-    class Meta:
-        fields = ('id', 'Username', 'Password')
+    localfile = open(filename, 'wb')
+    ftp.retrbinary('RETR ' + filename, localfile.write, 1024)
 
-Membre_schema = MemberSchema()
+    ftp.quit()
+    localfile.close()
 
 
-@app.route('/get', methods = ['GET'])
-def get_Members():
-    pass
-
-
-app.run(host='0.0.0.0', port = 5000, debug=True)
+grabFile()
