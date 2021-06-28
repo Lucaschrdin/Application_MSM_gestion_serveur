@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 
 export default function Connection({route, navigation }) {
@@ -13,16 +13,16 @@ export default function Connection({route, navigation }) {
             </View>
             
             <View style={{}}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Log In')}>
-                        <View style={styles.button}>
-                            <Text style={styles.textCon}>Se Connecter</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => onClick(true)}>
-                        <View style={styles.button}>
-                            <Text style={styles.text}>Continuer en tant qu'invité</Text>
-                        </View>
-                    </TouchableOpacity>
+                    
+                    <Button
+                        title="Se connecter"
+                        onPress={() => navigation.navigate('Log In Scientists')}
+                    />
+                    <TouchableOpacity style={styles.button} onPress={() => onClick(true)}>
+                        <Text style={styles.text}>
+                            Continuer sans se connecter
+                        </Text>
+                    </TouchableOpacity> 
             </View>
         </SafeAreaView>
     )
@@ -63,5 +63,14 @@ const styles = StyleSheet.create({
         fontSize: 25,
         margin: 10,
         justifyContent: 'center'
+    },
+    login: {
+        borderRadius: 10,
+        marginTop: 25,
+        marginBottom: 15, 
+        width: 280,
+        alignSelf: 'center',
+        left: '0%', 
+        top: '50%',
     },
 })
