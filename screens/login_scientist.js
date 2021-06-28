@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-export default function SignUp({route, navigation }) {
+export default function Login_scientist({route, navigation }) {
 
     const { onClick } = route.params
 

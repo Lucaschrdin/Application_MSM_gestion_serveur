@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SignUp from '../screens/signUp';
 import LogIn from '../screens/logIn';
 import Connection from '../screens/connection';
+import Login_scientist from '../screens/login_scientist';
 
 const Stack = createStackNavigator();
 
@@ -29,7 +30,13 @@ export default function AuthenticationNavigator({ route, navigation }) {
             name="Connection"
             component={Connection}
             initialParams={{onClick: onClick}}
-        />
+            />
+        <Stack.Screen 
+            name="Log In Scientists" 
+            component={Login_scientist}
+            initialParams={{onClick: onClick}}
+            />
+
         
         </Stack.Navigator>
     )

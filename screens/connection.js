@@ -12,11 +12,17 @@ export default function Connection({route, navigation }) {
                 <Image source={require('../assets/logo_msm_no_background.png')} style={styles.logo}/>
             </View>
             
-            <View style={{}}>
+            <View style={{
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                top: '80%'
+
+            }}>
                     
                     <Button
                         title="Se connecter"
                         onPress={() => navigation.navigate('Log In Scientists')}
+                        style = {{}}
                     />
                     <TouchableOpacity style={styles.button} onPress={() => onClick(true)}>
                         <Text style={styles.text}>
@@ -51,9 +57,6 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 15, 
         width: 280,
-        alignSelf: 'center',
-        left: '0%', 
-        top: '50%',
     },
     textCon: {
         fontSize: 16,
@@ -72,5 +75,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         left: '0%', 
         top: '50%',
+    },
+    buttonsContainer: {
+        alignItems: 'center', 
+        justifyContent: 'center',
+        marginTop: 48
     },
 })
