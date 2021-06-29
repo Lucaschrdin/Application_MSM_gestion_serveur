@@ -15,7 +15,7 @@ export default function AuthenticationNavigator({ route, navigation }) {
 
     return(
         <Stack.Navigator 
-            initialRouteName="Connecion"
+            initialRouteName="Connection"
             headerMode='none'
         >
         <Stack.Screen 
