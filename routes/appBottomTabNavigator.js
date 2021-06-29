@@ -6,6 +6,7 @@ import Live from '../screens/live';
 import Welcome from '../screens/welcome';
 import CustomTabBar from '../components/customTabBar';
 
+
 const Tab = createBottomTabNavigator()
 
 export default function AppBottomTabNavigator() {

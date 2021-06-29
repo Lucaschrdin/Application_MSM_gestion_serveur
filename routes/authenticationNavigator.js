@@ -4,6 +4,8 @@ import SignUp from '../screens/signUp';
 import LogIn from '../screens/logIn';
 import login_scientists from '../screens/login_scientist';
 import Connection from '../screens/connection';
+import Data2 from '../screens/data2';
+
 
 const Stack = createStackNavigator();
 
@@ -13,7 +15,7 @@ export default function AuthenticationNavigator({ route, navigation }) {
 
     return(
         <Stack.Navigator 
-            initialRouteName="Connection"
+            initialRouteName="Connecion"
             headerMode='none'
         >
         <Stack.Screen 
@@ -35,6 +37,10 @@ export default function AuthenticationNavigator({ route, navigation }) {
             name="Log In Scientists"
             component={login_scientists}
             initialParams={{onClick: onClick}}
+        />
+        <Stack.Screen 
+            name='Data2' 
+            component={Data2}
         />
         
         </Stack.Navigator>
