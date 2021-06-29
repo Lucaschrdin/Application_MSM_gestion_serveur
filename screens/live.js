@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import VideoStream from '../components/videoStream';
 import { globalStyles } from '../styles/global';
+import Video from 'react-native-video';
+
+
 
 export default function Live() {
     return(
@@ -9,7 +11,11 @@ export default function Live() {
             <View style={globalStyles.content}>
                 <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Profitez du live !</Text>
                 <View style={styles.video}>
-                    <VideoStream />
+                <Video
+                source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+                 style = {styles.video}
+                 paused = {false}
+                 />
                 </View>
             </View>
         </View>
@@ -18,6 +24,7 @@ export default function Live() {
 
 const styles = StyleSheet.create({
     video: {
-
+        width :'100%',
+        height :'100%',
     }
 })
