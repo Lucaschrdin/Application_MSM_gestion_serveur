@@ -15,6 +15,7 @@ export default function Live() {
                 source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
                  style = {styles.video}
                  paused = {false}
+                 resizeMode={"contain"}
                  />
                 </View>
             </View>
@@ -26,5 +27,7 @@ const styles = StyleSheet.create({
     video: {
         width :'100%',
         height :'100%',
+        position : 'absolute',
+        top :50,
     }
 })
