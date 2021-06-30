@@ -1,32 +1,35 @@
 import React from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
+import { SafeAreaView, View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 
 export default function Connection({route, navigation }) {
 
     const { onClick } = route.params
+    const backgroundImage = require('../assets/images/poseidon.jpg')
 
     return(
-        <SafeAreaView >
-            <View  style={styles.header}>
-                <Image source={require('../assets/logo_msm_no_background.png')} style={styles.logo}/>
-            </View>
-            
-            <View style={{}}>
-                    
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Log In Scientists')}>
+        <View >
+            <ImageBackground source={backgroundImage} style={styles.image}>
+                <View style={styles.content}>
+                    <View style={styles.header}>
+                        <Image source={require('../assets/logo_msm_no_background.png')} style={styles.logo}/>
+                    </View>
+                    <View style={{}}>
+                        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Log In Scientists')}>
                         
-                        <Text style={styles.text}>
-                            Se connecter
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => onClick(true)}>
-                        <Text style={styles.text}>
-                            Continuer sans se connecter
-                        </Text>
-                    </TouchableOpacity> 
-            </View>
-        </SafeAreaView>
+                            <Text style={styles.text}>
+                                Se connecter
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => onClick(true)}>
+                            <Text style={styles.text}>
+                                Continuer sans se connecter
+                            </Text>
+                        </TouchableOpacity> 
+                    </View>
+                </View>
+            </ImageBackground>
+        </View>
     )
 }
 
@@ -36,7 +39,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-end',
         alignSelf: 'stretch',
-        height: '15%'
+        height: '15%',
+        top: '-15%'
     },
     logo: {
         top:35,
@@ -47,7 +51,6 @@ const styles = StyleSheet.create({
     },
     button: {
         flexDirection: 'row',
-        backgroundColor: 'white',
         borderRadius: 10,
         alignItems: 'center',
         marginTop: 15,
@@ -55,7 +58,8 @@ const styles = StyleSheet.create({
         width: 280,
         alignSelf: 'center',
         left: '0%', 
-        top: '50%',
+        top: '-30%',
+        backgroundColor: '#00A6FFB9',
     },
     textCon: {
         fontSize: 16,
@@ -64,7 +68,9 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 25,
         margin: 10,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        color: 'white',
+        fontFamily: 'sansation',
     },
     login: {
         borderRadius: 10,
@@ -74,5 +80,14 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         left: '0%', 
         top: '50%',
+    },
+    image: {
+        resizeMode: 'cover',
+        width: '100%',
+        height: '100%',
+    },
+    content: {
+        flex: 1,
+        justifyContent: 'space-around'
     },
 })

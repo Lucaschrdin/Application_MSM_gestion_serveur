@@ -1,21 +1,23 @@
 import React from 'react';
-import { SafeAreaView, View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, Text, TextInput, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 export default function SignUp({route, navigation }) {
 
     const { onClick } = route.params
-    const listMail = []
-    const checkMail = (mail) => mail in listMail ? True : False
+    const backgroundImage = require('../assets/images/poseidon.jpg')
 
     return(
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#ECECEC', alignItems: 'center', justifyContent: 'center'}}>
-            <View style={{backgroundColor: '#ECECEC'}}>
-                <Text style={{fontSize: 24 }}>Rentrer votre adresse Email pour vérifier votre identité</Text>
-                <TextInput
-                    placeholder="Email"
-                    style={{fontSize: 24 }} 
+        <View>
+            <ImageBackground source={backgroundImage} style={styles.image}>
+            <View style={styles.login}>
+                <Text style={styles.text}>Rentrer votre adresse Email pour vérifier votre identité</Text>
+                <View >
+                    <TextInput
+                        placeholder="Email"
+                        style={{fontSize: 24, backgroundColor:'white', }} 
                     />
+                </View>
                     <TouchableOpacity style={styles.btn} onPress={() => onClick(true)}>
                         <Text style={styles.btnText}>
                             <Icon name="plus" size={20} />
@@ -23,8 +25,8 @@ export default function SignUp({route, navigation }) {
                         </Text>
                     </TouchableOpacity>   
             </View>
-            <Text style={{fontSize: 12 }}>Seules les personnes avec une adresse email sont autoriées à se connecter</Text>
-        </SafeAreaView>
+            </ImageBackground>
+        </View>
         
     )
 };
@@ -36,8 +38,24 @@ const styles = StyleSheet.create({
         margin: 5,
       },
     btnText: {
-        color: 'darkslateblue',
+        color: 'white',
         fontSize: 20,
         textAlign: 'center',
       },
+      image: {
+        resizeMode: 'cover',
+        width: '100%',
+        height: '100%',
+      },
+      text: {
+        fontSize: 25,
+        margin: 10,
+        justifyContent: 'center',
+        color: 'white',
+        fontFamily: 'sansation',
+    },
+    login: {
+        opacity:0.8, 
+        top:'30%',
+    },
 })
