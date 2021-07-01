@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, FlatList,
      TouchableOpacity, Button, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
 import CardData from '../components/cardData';
 import DataInfo from '../components/datainfo';
+import appContext from "../components/appContext";
 
 export default function Data({ navigation }) {
     const [pH, setPH] = useState({})
@@ -12,7 +13,8 @@ export default function Data({ navigation }) {
     const [dailyData, setDailyData] = useState(true)
     const [previousData, setPreviousData] = useState(false)
     const [dataInfo, setDataInfo] = useState(false)
-    
+    const myContext = useContext(appContext)
+    //utiliser avec myContext.connected
 
     const showDailyData = () => {
         setDailyData(true)

@@ -21,7 +21,7 @@ export default function Connection({route, navigation }) {
                                 Se connecter
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button} onPress={() => onClick(true)}>
+                        <TouchableOpacity style={styles.button} onPress={() =>global.connected = false & onClick(true)}>
                             <Text style={styles.text}>
                                 Continuer sans se connecter
                             </Text>

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import { SafeAreaView, View, Text, TextInput, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import appContext from "../components/appContext";
 
 export default function SignUp({route, navigation }) {
 
     const { onClick } = route.params
     const backgroundImage = require('../assets/images/poseidon.jpg')
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const can_connect = (email) => true; //A completer quand on aura acces au serveur
+    const myContext = useContext(appContext);
+    
 
     return(
         <View>
@@ -16,9 +21,13 @@ export default function SignUp({route, navigation }) {
                     <TextInput
                         placeholder="Email"
                         style={{fontSize: 24, backgroundColor:'white', }} 
+                        value={enteredEmail}
+                        onChangeText={text => setEnteredEmail(text)}
                     />
                 </View>
-                    <TouchableOpacity style={styles.btn} onPress={() => onClick(true)}>
+                    <TouchableOpacity style={styles.btn} onPress={() => 
+                        can_connect(enteredEmail) ? myContext.setConnected(true)  & onClick(true) : onClick(false)  
+                        }>
                         <Text style={styles.btnText}>
                             <Icon name="plus" size={20} />
                             Se connecter

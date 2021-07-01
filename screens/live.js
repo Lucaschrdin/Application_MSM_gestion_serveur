@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions} from 'react-native';
 import { globalStyles } from '../styles/global';
 import Video from 'react-native-video';
 
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         width :'100%',
         height :'100%',
         position : 'absolute',
-        top :50,
+        top :30,
+        transform: [{rotate:'0deg'}],
     }
 })
