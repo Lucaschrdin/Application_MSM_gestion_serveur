@@ -59,8 +59,9 @@ export default function Data({ navigation }) {
         + "La turbidité peut être visible à l'œil nu : on peut voir que l’eau est trouble, sa couleur change. C’est d’ailleurs une "
         + "des caractéristiques utilisées pour la mesurer. Elle s’exprime en UTN (Unité de Turbidité Néphélométrique)."}
     ]
-
+    if (myContext.connected){
     return(
+        
         <SafeAreaView style={globalStyles.container}>
             <View style={globalStyles.content}>
                 <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Données</Text>
@@ -111,6 +112,16 @@ export default function Data({ navigation }) {
             </View>
         </SafeAreaView>
     )
+
+}
+else {
+    return(
+        <View>
+            <Text>pas connecte</Text>
+        </View>
+    )
+}
+
 }
 
 const styles = StyleSheet.create({
