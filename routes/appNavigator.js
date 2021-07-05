@@ -10,6 +10,8 @@ const Stack = createStackNavigator();
 export default function AppNavigator({ route, navigation }) {
 
     const [isSignedIn, setIsSignedIn] = useState(false)
+    
+    
 
     return(
         <NavigationContainer>

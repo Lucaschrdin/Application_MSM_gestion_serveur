@@ -13,11 +13,20 @@ export default function AppBottomTabNavigator({ route, navigation }) {
 
     
     const [welcome, setWelcome] = useState(true)
+    const [showTabBar, setShowTabBar] = useState(true)
 
     if (welcome) {
         return(
         <Welcome onClick={setWelcome} />
         )
+    }
+
+    
+    {showTabBar === true
+        // ? navigation.setOptions({tabBarVisible: true})
+        ? console.log('true')
+        // : navigation.setOptions({tabBarVisible: false})
+        : console.log('false')
     }
 
     return(
@@ -34,6 +43,7 @@ export default function AppBottomTabNavigator({ route, navigation }) {
             <Tab.Screen 
             name='Live' 
             component={Live}
+            initialParams={{onClickShow: setShowTabBar}}
             />
 
             <Tab.Screen 

@@ -8,7 +8,7 @@ import Orientation from 'react-native-orientation-locker';
 
 
 export default function Live({ route, navigation }) {
-    
+
 
     const [screenOrientation, setScreenOrientation] = useState("PORTAIT");
     const [hideTabBar, setHideTabBar] = useState(true)
@@ -29,17 +29,11 @@ export default function Live({ route, navigation }) {
     ? navigation.setOptions({tabBarVisible: true})
     : navigation.setOptions({tabBarVisible: false})
     }
-    
+
 
     const _onOrientationDidChange = (orientation) => {
         setScreenOrientation(orientation)
-    };
-
-    Orientation.getDeviceOrientation((deviceOrientation)=> {
-        _onOrientationDidChange(deviceOrientation);
-      });
-
-    Orientation.addDeviceOrientationListener(_onOrientationDidChange)
+    }
 
     return(
         <View style={globalStyles.container}>
@@ -58,7 +52,7 @@ export default function Live({ route, navigation }) {
                     disableTimer = {true}
                     disableBack = {true}
                     disableVolume = {true}
-                    showTimeRemaining  ={false}
+                    showTimeRemaining  = {true}
                     />
                 </View>
             </View>
