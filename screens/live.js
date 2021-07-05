@@ -1,22 +1,49 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions} from 'react-native';
+import { StyleSheet, View, Text, Dimensions,} from 'react-native';
 import { globalStyles } from '../styles/global';
-import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
+import { useState } from 'react';
+import Orientation from 'react-native-orientation-locker';
 
 
 
 export default function Live() {
+    
+    const [screenOrientation, setScreenOrientation] = useState("PORTAIT");
+
+    const EnterFullScreenMode = () => {
+        Orientation.lockToLandscapeLeft()
+        _onOrientationDidChange("LANDSCAPE-LEFT")
+    }
+
+    const ExitFullScreenMode = () => {
+        Orientation.lockToPortrait()
+        _onOrientationDidChange("PORTRAIT")
+    }
+
+    const _onOrientationDidChange = (orientation) => {
+        setScreenOrientation(orientation)
+    };
+
+    Orientation.getDeviceOrientation((deviceOrientation)=> {
+        _onOrientationDidChange(deviceOrientation);
+      });
+
+    Orientation.addDeviceOrientationListener(_onOrientationDidChange)
+
     return(
         <View style={globalStyles.container}>
             <View style={globalStyles.content}>
                 <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Profitez du live !</Text>
                 <View style={styles.video}>
-                <Video
-                source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
-                 style = {styles.video}
-                 paused = {false}
-                 resizeMode={"contain"}
-                 />
+                    <VideoPlayer
+                    style= {styles.video}
+                    source={{ uri: 'http://centrale.freelab.inno.jnlab.net/essai4.mp4' }}
+                    resizeMode={'contain'}
+                    onEnterFullscreen = {EnterFullScreenMode}
+                    onExitFullscreen = {ExitFullScreenMode}
+                    toggleResizeModeOnFullscreen = {true}
+                    />
                 </View>
             </View>
         </View>
@@ -30,5 +57,5 @@ const styles = StyleSheet.create({
         position : 'absolute',
         top :30,
         transform: [{rotate:'0deg'}],
-    }
+    },
 })
