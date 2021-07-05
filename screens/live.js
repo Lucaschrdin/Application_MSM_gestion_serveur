@@ -7,19 +7,29 @@ import Orientation from 'react-native-orientation-locker';
 
 
 
-export default function Live() {
+export default function Live({ route, navigation }) {
     
+
     const [screenOrientation, setScreenOrientation] = useState("PORTAIT");
+    const [hideTabBar, setHideTabBar] = useState(true)
 
     const EnterFullScreenMode = () => {
         Orientation.lockToLandscapeLeft()
         _onOrientationDidChange("LANDSCAPE-LEFT")
+        setHideTabBar(false)
     }
 
     const ExitFullScreenMode = () => {
         Orientation.lockToPortrait()
         _onOrientationDidChange("PORTRAIT")
+        setHideTabBar(true)
     }
+
+    {hideTabBar === true
+    ? navigation.setOptions({tabBarVisible: true})
+    : navigation.setOptions({tabBarVisible: false})
+    }
+    
 
     const _onOrientationDidChange = (orientation) => {
         setScreenOrientation(orientation)
@@ -34,7 +44,9 @@ export default function Live() {
     return(
         <View style={globalStyles.container}>
             <View style={globalStyles.content}>
-                <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Profitez du live !</Text>
+                
+                <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Profitez du live !</Text>      
+                
                 <View style={styles.video}>
                     <VideoPlayer
                     style= {styles.video}
@@ -42,7 +54,11 @@ export default function Live() {
                     resizeMode={'contain'}
                     onEnterFullscreen = {EnterFullScreenMode}
                     onExitFullscreen = {ExitFullScreenMode}
-                    toggleResizeModeOnFullscreen = {true}
+                    toggleResizeModeOnFullscreen = {false}
+                    disableTimer = {true}
+                    disableBack = {true}
+                    disableVolume = {true}
+                    showTimeRemaining  ={false}
                     />
                 </View>
             </View>

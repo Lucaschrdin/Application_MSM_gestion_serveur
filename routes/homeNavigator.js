@@ -5,7 +5,7 @@ import ViewDetails from '../screens/viewDetails';
 
 const Stack = createStackNavigator();
 
-export const HomeNavigator = ({ navigation }) => {
+export const HomeNavigator = ({ route, navigation }) => {
 
   return(
     <Stack.Navigator 

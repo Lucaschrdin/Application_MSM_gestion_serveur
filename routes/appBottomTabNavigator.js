@@ -9,8 +9,9 @@ import CustomTabBar from '../components/customTabBar';
 
 const Tab = createBottomTabNavigator()
 
-export default function AppBottomTabNavigator() {
+export default function AppBottomTabNavigator({ route, navigation }) {
 
+    
     const [welcome, setWelcome] = useState(true)
 
     if (welcome) {
@@ -23,15 +24,18 @@ export default function AppBottomTabNavigator() {
         <Tab.Navigator
             initialRouteName='Home'
             backBehavior='initialRoute'
-            tabBar={ props => <CustomTabBar {...props}/>}>
+            tabBar={ props => <CustomTabBar {...props}/>}
+            >
             <Tab.Screen 
                 name='Home' 
                 component={HomeNavigator}
             />
+            
             <Tab.Screen 
-                name='Live' 
-                component={Live}
+            name='Live' 
+            component={Live}
             />
+
             <Tab.Screen 
                 name='Data' 
                 component={DataNavigator}
