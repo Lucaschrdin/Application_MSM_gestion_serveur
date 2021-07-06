@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import AppNavigator from './routes/appNavigator';
+import appContext from './components/appContext';
 
 const getFonts = () =>
   Font.loadAsync({
@@ -12,9 +13,15 @@ const getFonts = () =>
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
-
+  const [connected, setConnected] = useState(false);
+  const isconnected = {
+    connected: connected,
+    setConnected,
+  }
   if (appIsReady) {
-    return <AppNavigator />;
+    return <appContext.Provider value={isconnected}>
+      <AppNavigator />
+      </appContext.Provider>;
   } 
   
   else {
