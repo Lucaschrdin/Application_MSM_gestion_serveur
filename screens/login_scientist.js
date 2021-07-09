@@ -22,7 +22,7 @@ export default function SignUp({route, navigation }) {
         SSHClient.usePrivateKey(false);
         SSHClient.setPassword("9Typ948dfgdkjnyN45fs");
         await SSHClient.connect();   
-        var command = `python email2.py ${enteredEmail}`;
+        var command = `python email.py ${enteredEmail}`;
     
         await SSHClient.execute(command).then(
             (result)=>{
