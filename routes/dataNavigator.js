@@ -1,6 +1,6 @@
 import  React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Data from '../screens/data';
+import Data2 from '../screens/data2';
 import ViewDataDetails from '../screens/viewDataDetails';
 
 const Stack = createStackNavigator();
@@ -13,7 +13,7 @@ export const DataNavigator = ({ navigation }) => {
     >
       <Stack.Screen 
         name="Data" 
-        component={Data}
+        component={Data2}
         options={{
             headerShown: false
         }}/>

@@ -2,6 +2,8 @@ import React, {useState, useContext} from 'react';
 import { SafeAreaView, View, Text, TextInput, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import appContext from "../components/appContext";
+import SSHClient from 'react-native-sshclient';
+import publicIP from 'react-native-public-ip';
 
 export default function SignUp({route, navigation }) {
 
@@ -10,8 +12,35 @@ export default function SignUp({route, navigation }) {
     const [enteredEmail, setEnteredEmail] = useState('');
     const can_connect = (email) => true; //A completer quand on aura acces au serveur
     const myContext = useContext(appContext);
+
+    const [answer, setAnswer] = useState(false)
+
     
 
+    async function conection() {
+        SSHClient.setup("noc","185.61.185.164",22);
+        SSHClient.usePrivateKey(false);
+        SSHClient.setPassword("9Typ948dfgdkjnyN45fs");
+        await SSHClient.connect();   
+        var command = `python email2.py ${enteredEmail}`;
+    
+        await SSHClient.execute(command).then(
+            (result)=>{
+                {result[0]=== "oui" && (setAnswer(true))}
+                console.log(result)
+            },
+            (error)=>{
+                console.log(error);
+            }
+          );
+        await SSHClient.close();
+    }
+
+    {answer
+        ? myContext.setConnected(true)  & onClick(true) 
+        : onClick(false)
+    }
+ 
     return(
         <View>
             <ImageBackground source={backgroundImage} style={styles.image}>
@@ -25,8 +54,8 @@ export default function SignUp({route, navigation }) {
                         onChangeText={text => setEnteredEmail(text)}
                     />
                 </View>
-                    <TouchableOpacity style={styles.btn} onPress={() => 
-                        can_connect(enteredEmail) ? myContext.setConnected(true)  & onClick(true) : onClick(false)  
+                    <TouchableOpacity style={styles.btn} onPress={()=>
+                        conection()
                         }>
                         <Text style={styles.btnText}>
                             <Icon name="plus" size={20} />
