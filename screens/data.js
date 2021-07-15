@@ -5,6 +5,7 @@ import { globalStyles } from '../styles/global';
 import CardData from '../components/cardData';
 import DataInfo from '../components/datainfo';
 import appContext from "../components/appContext";
+import FTP from 'react-native-ftp';
 
 export default function Data({ navigation }) {
     const [pH, setPH] = useState({})
@@ -15,6 +16,20 @@ export default function Data({ navigation }) {
     const [dataInfo, setDataInfo] = useState(false)
     const myContext = useContext(appContext)
     //utiliser avec myContext.connected
+
+    FTP.setup("ftp.hydrovu.com",2121) //Setup host
+    FTP.login("fabien.lemarchand@fresnel.fr","msm2021")
+    .then((result)=>{
+        FTP.list(".")
+        .then((result)=>{
+            console.log(result);
+        }
+        );
+    },
+    (error)=>{
+        alert(error);
+    }
+    )
 
     const showDailyData = () => {
         setDailyData(true)
@@ -116,9 +131,49 @@ export default function Data({ navigation }) {
 }
 else {
     return(
-        <View>
-            <Text>pas connecte</Text>
-        </View>
+        <SafeAreaView style={globalStyles.container}>
+            <View style={globalStyles.content}>
+                <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Données</Text>
+                <Button 
+                style={styles.button} 
+                title='Données du jour'
+                onPress={showDailyData}
+                />
+                {/* Montre les données du jour */}
+                {dailyData && <FlatList 
+                    data={fakeDataForDemo}
+                    renderItem={({ item }) => (
+                                <CardData data={item}/> 
+                            )
+                    }
+                    keyExtractor={item => item.variable}
+                    showsVerticalScrollIndicator={false}
+                />
+                }
+                <Button 
+                style={styles.button} 
+                title='Données précédentes' 
+                onPress={showPreviousData}
+                />
+
+                {/* Montre les données précédentes */}
+                {previousData && <Text>WIP</Text>}
+                <Button 
+                style={styles.button} 
+                title='Informations sur les données'
+                onPress={showDataInfo}
+                />
+
+                {/* Montre la signification des données */}
+                {dataInfo && <FlatList 
+                    data={fakeDataForDemo}
+                    renderItem={({ item }) => (
+                        <DataInfo item={item} />
+                    )}
+                    keyExtractor={item => item.variable}
+                />}
+                </View>
+        </SafeAreaView>
     )
 }
 

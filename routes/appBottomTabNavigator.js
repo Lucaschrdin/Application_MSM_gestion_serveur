@@ -21,13 +21,6 @@ export default function AppBottomTabNavigator({ route, navigation }) {
         )
     }
 
-    
-    {showTabBar === true
-        // ? navigation.setOptions({tabBarVisible: true})
-        ? console.log('true')
-        // : navigation.setOptions({tabBarVisible: false})
-        : console.log('false')
-    }
 
     return(
         <Tab.Navigator
