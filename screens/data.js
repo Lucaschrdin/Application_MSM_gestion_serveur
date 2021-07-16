@@ -1,51 +1,61 @@
 import React, { useState,useContext } from 'react';
-import { SafeAreaView, StyleSheet, View, Text, FlatList,
+import { SafeAreaView, StyleSheet, View, Text, FlatList, Image,
      TouchableOpacity, Button, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
-import CardData from '../components/cardData';
+import CardDataScientist from '../components/cardDataScientist';
+import CardDataPeople from '../components/cardDataPeople';
 import DataInfo from '../components/datainfo';
 import appContext from "../components/appContext";
-import FTP from 'react-native-ftp';
 
 export default function Data({ navigation }) {
     const [pH, setPH] = useState({})
     const [temperature, setTemperature] = useState({})
     const [turbidity, setTurbidity] = useState({})
     const [dailyData, setDailyData] = useState(true)
-    const [previousData, setPreviousData] = useState(false)
+    const [previousDataPh, setPreviousDataPh] = useState(false)
+    const [previousDataTemp, setPreviousDataTemp] = useState(false)
+    const [previousDataTurb, setPreviousDataTurb] = useState(false)
     const [dataInfo, setDataInfo] = useState(false)
     const myContext = useContext(appContext)
     //utiliser avec myContext.connected
 
-    FTP.setup("ftp.hydrovu.com",2121) //Setup host
-    FTP.login("fabien.lemarchand@fresnel.fr","msm2021")
-    .then((result)=>{
-        FTP.list(".")
-        .then((result)=>{
-            console.log(result);
-        }
-        );
-    },
-    (error)=>{
-        alert(error);
-    }
-    )
-
     const showDailyData = () => {
         setDailyData(true)
-        setPreviousData(false)
+        setPreviousDataPh(false)
+        setPreviousDataTemp(false)
+        setPreviousDataTurb(false)
         setDataInfo(false)
     }
 
-    const showPreviousData = () => {
+    const showPreviousDataPh = () => {
         setDailyData(false)
-        setPreviousData(true)
+        setPreviousDataPh(true)
+        setPreviousDataTemp(false)
+        setPreviousDataTurb(false)
+        setDataInfo(false)
+    }
+
+    const showPreviousDataTemp = () => {
+        setDailyData(false)
+        setPreviousDataPh(false)
+        setPreviousDataTemp(true)
+        setPreviousDataTurb(false)
+        setDataInfo(false)
+    }
+    
+    const showPreviousDataTurb = () => {
+        setDailyData(false)
+        setPreviousDataPh(false)
+        setPreviousDataTemp(false)
+        setPreviousDataTurb(true)
         setDataInfo(false)
     }
 
     const showDataInfo = () => {
         setDailyData(false)
-        setPreviousData(false)
+        setPreviousDataPh(false)
+        setPreviousDataTemp(false)
+        setPreviousDataTurb(false)
         setDataInfo(true)
     }
 
@@ -89,7 +99,7 @@ export default function Data({ navigation }) {
                 {dailyData && <FlatList 
                     data={fakeDataForDemo}
                     renderItem={({ item }) => (
-                                <CardData data={item}/> 
+                                <CardDataScientist data={item}/> 
                             )
                     }
                     keyExtractor={item => item.variable}
@@ -98,32 +108,79 @@ export default function Data({ navigation }) {
                 }
                 <Button 
                 style={styles.button} 
-                title='Données précédentes' 
-                onPress={showPreviousData}
+                title='Données précédentes du ph' 
+                onPress={showPreviousDataPh}
                 />
+                {previousDataPh && 
+                <Image
+                style={styles.image}
+                source={{
+                uri: 'http://centrale.freelab.inno.jnlab.net/ph.png',
+                }}/>
+                }
 
-                {/* Montre les données précédentes */}
-                {previousData && <Text>WIP</Text>}
                 <Button 
+                style={styles.button} 
+                title='Données précédentes de la température' 
+                onPress={showPreviousDataTemp}
+                />
+                {previousDataTemp && 
+                <Image
+                style={styles.image}
+                source={{
+                uri: 'http://centrale.freelab.inno.jnlab.net/temp.png',
+                }}/>
+                }
+
+                <Button 
+                style={styles.button} 
+                title='Données précédentes de la turbidité' 
+                onPress={showPreviousDataTurb}
+                />
+                {previousDataTurb && 
+                <Image
+                style={styles.image}
+                source={{
+                uri: 'http://centrale.freelab.inno.jnlab.net/turbidite.png',
+                }}/>
+                }
+
+                {/* Montre les données précédentes, le commentaire est un wip*/}
+                {/* {previousData && 
+                <View style={{flex:1}}>
+                    <Image
+                        style={styles.image}
+                        source={{
+                        uri: 'http://centrale.freelab.inno.jnlab.net/ph.png',
+                        }}/>
+                    <Image
+                        style={styles.image}
+                        source={{
+                        uri: 'http://centrale.freelab.inno.jnlab.net/temp.png',
+                        }}/>
+                </View>}
+                <View style={{flex:2}}>
+                    <Image
+                        style={styles.image}
+                        source={{
+                        uri: 'http://centrale.freelab.inno.jnlab.net/turbidite.png',
+                        }}/>
+                </View> */}
+
+                {/* <Button 
                 style={styles.button} 
                 title='Informations sur les données'
                 onPress={showDataInfo}
                 />
 
-                {/* Montre la signification des données */}
+                Montre la signification des données
                 {dataInfo && <FlatList 
                     data={fakeDataForDemo}
                     renderItem={({ item }) => (
                         <DataInfo item={item} />
                     )}
                     keyExtractor={item => item.variable}
-                />}
-
-                {/* <Text style={styles.disclaimer}>
-                    AVERTISSEMENT: les données présentées ci-dessus ne proviennent pas des relévés de mesures de notre
-                    système embarqué, elles ne font qu'illustrer une des fonctionnalités de l'application en cours de 
-                    développement.
-                </Text> */}
+                />} */}
             </View>
         </SafeAreaView>
     )
@@ -143,21 +200,14 @@ else {
                 {dailyData && <FlatList 
                     data={fakeDataForDemo}
                     renderItem={({ item }) => (
-                                <CardData data={item}/> 
+                                <CardDataPeople data={item}/> 
                             )
                     }
                     keyExtractor={item => item.variable}
                     showsVerticalScrollIndicator={false}
                 />
                 }
-                <Button 
-                style={styles.button} 
-                title='Données précédentes' 
-                onPress={showPreviousData}
-                />
 
-                {/* Montre les données précédentes */}
-                {previousData && <Text>WIP</Text>}
                 <Button 
                 style={styles.button} 
                 title='Informations sur les données'
@@ -180,14 +230,9 @@ else {
 }
 
 const styles = StyleSheet.create({
-    disclaimer: {
-        textAlign: 'justify',
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 10,
-        fontSize: 18,
-        fontStyle: 'italic',
-        color: 'red',
+    content: {
+        
+        backgroundColor:'#ECECEC',
     },
     button: {
         flexDirection: 'row',
@@ -201,4 +246,11 @@ const styles = StyleSheet.create({
         left: '0%', 
         top: '50%',
     },
+    image: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'contain', 
+        top: -5,
+      },
 })
