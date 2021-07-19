@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 
 export default function CardDataPeople({ data }) {
 
     const latestValue = data.latestValue
+    console.log(latestValue)
 
     return(
         <View style={ styles.container }>
@@ -18,15 +19,21 @@ export default function CardDataPeople({ data }) {
                 <View style={ styles.valueContainer }>
                 {data.variable === 'pH' &&
                     ( latestValue > 7 
-                    ? <Icon name="grin-beam" size={20} />
-                    : <Icon name="meh-blank" size={20} />
+                    ? <Icon name="grin-alt" size={20} color="#228b22"  />
+                    : <Icon name="meh" size={20} color="#ffa500" />
                     )
                 }
                 {data.variable === 'Température' &&
                     <Text style={ styles.value }>{ data.latestValue } { data.unit }</Text>
                 }
                 {data.variable === 'Turbidité' &&
-                    <Text style={ styles.value }>{ data.latestValue } { data.unit }</Text>
+                    ( latestValue < 5 
+                    ?<Text>Eau claire</Text>
+                    :latestValue>5 & latestValue<30 
+                        ?<Text>Eau légérement trouble</Text>
+                    :<Text>Eau trouble </Text>
+                    )
+                    
                 }
                 </View>
             </View>

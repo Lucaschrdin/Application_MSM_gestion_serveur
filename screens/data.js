@@ -62,7 +62,7 @@ export default function Data({ navigation }) {
 
 
     const fakeDataForDemo = [
-        { variable: 'pH', values: [], latestValue: 8.07, unit: "", lastRefresh: "1 minute", 
+        { variable: 'pH', values: [], latestValue: 6, unit: "", lastRefresh: "1 minute", 
         description: "Le pH est l'abréviation de “potentiel hydrogène” et mesure l’activité chimique des ions hydronium " 
         + "naturellement présents en solution aqueuse. Lors d’une mesure, on obtient une valeur entre 0 et 14 : 0 correspond à un "
         + "milieu très acide et 14 à un milieu très basique. L’acidification des océans fait référence à cet indicateur : le CO2 "
@@ -74,7 +74,7 @@ export default function Data({ navigation }) {
         + "de connaître la température de l’eau dans laquelle ils vont plonger, et permet aux scientifiques de connaître précisément "
         + "l’évolution de la température (± 0,1 °C). Conscients du problème de réchauffement des mers du globe, l’implantation d’un tel "
         + "capteur aux abords d’une grande ville comme Marseille s’inscrit dans une démarche de monitoring du réchauffement climatique."},
-        { variable: 'Turbidité', values: [], latestValue: 50.9, unit: "UTN", lastRefresh: "1 minute", 
+        { variable: 'Turbidité', values: [], latestValue: 30, unit: "UTN", lastRefresh: "1 minute", 
         description: "Indicateur clé de la qualité de l’eau, la turbidité évalue la quantité de particules en suspension dans "
         + "un fluide. Dans le cas de la mer, une turbidité anormalement grande peut indiquer la présence de matière polluante "
         + "en milieu marin. Pour remarque, une grande quantité de particules en suspension dans l’eau de mer implique une grande "
@@ -181,6 +181,7 @@ export default function Data({ navigation }) {
                     )}
                     keyExtractor={item => item.variable}
                 />} */}
+                <Text>Les données ne sont pas vérifiées par un organisme</Text>
             </View>
         </SafeAreaView>
     )
@@ -222,6 +223,8 @@ else {
                     )}
                     keyExtractor={item => item.variable}
                 />}
+
+                <Text>Les données ne sont pas vérifiées par un organisme</Text>
                 </View>
         </SafeAreaView>
     )
