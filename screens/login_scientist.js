@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
-import { SafeAreaView, View, Text, TextInput, ImageBackground, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { SafeAreaView, View, Text, TextInput,
+     ImageBackground, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import appContext from "../components/appContext";
 import SSHClient from 'react-native-sshclient';
@@ -18,11 +19,11 @@ export default function SignUp({route, navigation }) {
 
     const input_missing = () => {
         Alert.alert(
-            "Alert Title",
-            "My Alert Msg",
+            "Erreur de connexion",
+            "L'adresse Email ou le mot de passe est incorect",
             [
               {
-                text: "Cancel",
+                text: "Fermer",
                 style: "cancel",
               },
             ],
@@ -30,7 +31,7 @@ export default function SignUp({route, navigation }) {
               cancelable: true,
               onDismiss: () =>
                 Alert.alert(
-                  "This alert was dismissed by tapping outside of the alert dialog."
+                  "L'adresse Email ou le mot de passe est incorect"
                 ),
             }
           );
@@ -66,17 +67,19 @@ export default function SignUp({route, navigation }) {
         <View>
             <ImageBackground source={backgroundImage} style={styles.image}>
             <View style={styles.login}>
-                <Text style={styles.text}>Rentrer votre adresse Email pour vérifier votre identité</Text>
+                <Text style={styles.text}>
+                    Rentrer votre adresse Email et le mot de passe
+                </Text>
                 <View >
                     <TextInput
                         placeholder="Email"
-                        style={{fontSize: 24, backgroundColor:'white', }} 
+                        style={styles.textInput} 
                         value={enteredEmail}
                         onChangeText={text => setEnteredEmail(text)}
                     />
                     <TextInput
                     placeholder="Password"
-                    style={{fontSize: 24, backgroundColor:'white', }} 
+                    style={styles.textInput} 
                     value={enteredPwd}
                     onChangeText={text => setEnteredPwd(text)}
                     />
@@ -104,8 +107,10 @@ const styles = StyleSheet.create({
       },
     btnText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 30,
         textAlign: 'center',
+        backgroundColor:'#00A6FFB9', // à revoir
+        marginTop: 20,
       },
       image: {
         resizeMode: 'cover',
@@ -115,9 +120,15 @@ const styles = StyleSheet.create({
       text: {
         fontSize: 25,
         margin: 10,
-        justifyContent: 'center',
+        textAlign: 'center',
         color: 'white',
         fontFamily: 'sansation',
+        backgroundColor:'#00A6FFB9', // à revoir 
+        marginBottom: 20,
+    },
+    textInput: {
+        fontSize: 24,
+        backgroundColor:'white', 
     },
     login: {
         opacity:0.8, 

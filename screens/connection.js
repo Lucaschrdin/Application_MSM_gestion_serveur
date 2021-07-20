@@ -15,17 +15,18 @@ export default function Connection({route, navigation }) {
                         <Image source={require('../assets/logo_msm_no_background.png')} style={styles.logo}/>
                     </View>
                     <View style={{}}>
+                        <TouchableOpacity style={styles.button} onPress={() =>global.connected = false & onClick(true)}>
+                            <Text style={styles.text}>
+                                {' '}Accès grand public
+                            </Text>
+                        </TouchableOpacity> 
                         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Log In Scientists')}>
                         
                             <Text style={styles.text}>
-                                Se connecter
+                                {'      '}Accès réservé
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button} onPress={() =>global.connected = false & onClick(true)}>
-                            <Text style={styles.text}>
-                                Continuer sans se connecter
-                            </Text>
-                        </TouchableOpacity> 
+                        
                     </View>
                 </View>
             </ImageBackground>
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 15, 
         width: 280,
+        height: 60,
         alignSelf: 'center',
         left: '0%', 
         top: '-30%',
@@ -66,11 +68,11 @@ const styles = StyleSheet.create({
         margin: 10
     },
     text: {
-        fontSize: 25,
+        fontSize: 28,
         margin: 10,
-        justifyContent: 'center',
         color: 'white',
         fontFamily: 'sansation',
+        // textAlign:'justify',
     },
     login: {
         borderRadius: 10,

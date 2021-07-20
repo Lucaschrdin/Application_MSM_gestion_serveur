@@ -16,6 +16,7 @@ export default function Data({ navigation }) {
     const [previousDataTemp, setPreviousDataTemp] = useState(false)
     const [previousDataTurb, setPreviousDataTurb] = useState(false)
     const [dataInfo, setDataInfo] = useState(false)
+    const [dataInfoDetail, setDataInfoDetail] = useState(false)
     const myContext = useContext(appContext)
     //utiliser avec myContext.connected
 
@@ -25,6 +26,7 @@ export default function Data({ navigation }) {
         setPreviousDataTemp(false)
         setPreviousDataTurb(false)
         setDataInfo(false)
+        setDataInfoDetail(false)
     }
 
     const showPreviousDataPh = () => {
@@ -33,6 +35,7 @@ export default function Data({ navigation }) {
         setPreviousDataTemp(false)
         setPreviousDataTurb(false)
         setDataInfo(false)
+        setDataInfoDetail(false)
     }
 
     const showPreviousDataTemp = () => {
@@ -41,6 +44,7 @@ export default function Data({ navigation }) {
         setPreviousDataTemp(true)
         setPreviousDataTurb(false)
         setDataInfo(false)
+        setDataInfoDetail(false)
     }
     
     const showPreviousDataTurb = () => {
@@ -49,6 +53,7 @@ export default function Data({ navigation }) {
         setPreviousDataTemp(false)
         setPreviousDataTurb(true)
         setDataInfo(false)
+        setDataInfoDetail(false)
     }
 
     const showDataInfo = () => {
@@ -57,24 +62,42 @@ export default function Data({ navigation }) {
         setPreviousDataTemp(false)
         setPreviousDataTurb(false)
         setDataInfo(true)
+        setDataInfoDetail(false)
+    }
+
+    const showDataInfoDetail = () => {
+        setDailyData(false)
+        setPreviousDataPh(false)
+        setPreviousDataTemp(false)
+        setPreviousDataTurb(false)
+        setDataInfo(false)
+        setDataInfoDetail(true)
     }
 
 
 
     const fakeDataForDemo = [
         { variable: 'pH', values: [], latestValue: 6, unit: "", lastRefresh: "1 minute", 
+        description: "Le pH renseigne sur l'acidité de l'eau."},
+        { variable: 'Température', values: [], latestValue: 20, unit: "°C", lastRefresh: "1 minute",},
+        { variable: 'Turbidité', values: [], latestValue: 30, unit: "UTN", lastRefresh: "1 minute", 
+        description: "La turbidité renseigne sur la clarté de l'eau."}
+    ]
+
+    const fakeDataForDemoDetail = [
+        { variable: 'pH',
         description: "Le pH est l'abréviation de “potentiel hydrogène” et mesure l’activité chimique des ions hydronium " 
         + "naturellement présents en solution aqueuse. Lors d’une mesure, on obtient une valeur entre 0 et 14 : 0 correspond à un "
         + "milieu très acide et 14 à un milieu très basique. L’acidification des océans fait référence à cet indicateur : le CO2 "
         + "présent dans l’air se dissout dans les masses d’eau terrestres, et, de par une réaction chimique, tend à rendre plus acide "
         + "le pH. Pour preuve, le pH maritime est passé de 8,25 à 8,14 entre 1751 et 2004. Cela pose de très forts problèmes au niveau "
         + "de la biodiversité marine qui doit s’adapter à ces nouvelles conditions de vie."},
-        { variable: 'Température', values: [], latestValue: 19.8, unit: "°C", lastRefresh: "1 minute", 
+        { variable: 'Température',
         description: "Cet indicateur est compréhensible par tous et est utile pour deux aspects : il permet aux utilisateurs "
         + "de connaître la température de l’eau dans laquelle ils vont plonger, et permet aux scientifiques de connaître précisément "
         + "l’évolution de la température (± 0,1 °C). Conscients du problème de réchauffement des mers du globe, l’implantation d’un tel "
         + "capteur aux abords d’une grande ville comme Marseille s’inscrit dans une démarche de monitoring du réchauffement climatique."},
-        { variable: 'Turbidité', values: [], latestValue: 30, unit: "UTN", lastRefresh: "1 minute", 
+        { variable: 'Turbidité',
         description: "Indicateur clé de la qualité de l’eau, la turbidité évalue la quantité de particules en suspension dans "
         + "un fluide. Dans le cas de la mer, une turbidité anormalement grande peut indiquer la présence de matière polluante "
         + "en milieu marin. Pour remarque, une grande quantité de particules en suspension dans l’eau de mer implique une grande "
@@ -84,7 +107,8 @@ export default function Data({ navigation }) {
         + "La turbidité peut être visible à l'œil nu : on peut voir que l’eau est trouble, sa couleur change. C’est d’ailleurs une "
         + "des caractéristiques utilisées pour la mesurer. Elle s’exprime en UTN (Unité de Turbidité Néphélométrique)."}
     ]
-    if (myContext.connected){
+
+    if (myContext.connected){ // Screen scientist
     return(
         
         <SafeAreaView style={globalStyles.container}>
@@ -188,10 +212,11 @@ export default function Data({ navigation }) {
 
 }
 else {
-    return(
+    return( // Screen people
         <SafeAreaView style={globalStyles.container}>
-            <View style={globalStyles.content}>
+            <View style={styles.content}>
                 <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Données</Text>
+                <Text style={{marginTop:-15, marginBottom: 10}}>Les données ne sont pas vérifiées par un organisme</Text>
                 <Button 
                 style={styles.button} 
                 title='Données du jour'
@@ -217,14 +242,44 @@ else {
 
                 {/* Montre la signification des données */}
                 {dataInfo && <FlatList 
-                    data={fakeDataForDemo}
+                    data={[
+                        { variable: 'pH', description: "Le pH renseigne sur l'acidité de l'eau."},
+                        { variable: 'Turbidité', description: "La turbidité renseigne sur la clarté de l'eau."}
+                    ]}
                     renderItem={({ item }) => (
-                        <DataInfo item={item} />
+                        <View>
+                            <Text style = {styles.txtTitle}>
+                                {item.variable}{'\n'}
+                            </Text> 
+                            <Text style = {styles.txtContent}>
+                                {item.description}{'\n'}{'\n'}
+                            </Text>
+                        </View>
                     )}
                     keyExtractor={item => item.variable}
                 />}
+                
+                <Button 
+                style={styles.button} 
+                title='Informations sur les données en détail'
+                onPress={showDataInfoDetail}
+                />
 
-                <Text>Les données ne sont pas vérifiées par un organisme</Text>
+                {/* Montre la signification en détail des données */}
+                {dataInfoDetail && <FlatList 
+                    data={fakeDataForDemoDetail}
+                    renderItem={({ item }) => (
+                        <View>
+                            <Text style = {styles.txtTitle}>
+                                {item.variable}{'\n'}
+                            </Text> 
+                            <Text style = {styles.txtContent}>
+                                {item.description}{'\n'}{'\n'}
+                            </Text>
+                        </View>
+                    )}
+                    keyExtractor={item => item.variable}
+                />}
                 </View>
         </SafeAreaView>
     )
@@ -248,6 +303,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         left: '0%', 
         top: '50%',
+        fontFamily: 'sansation',
+    },
+    buttonDetail:{
+
     },
     image: {
         flex: 1,
@@ -256,4 +315,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain', 
         top: -5,
       },
+    txtTitle:{
+        fontFamily: 'sansation',
+        fontWeight: 'bold',
+        marginBottom:-10, 
+        fontSize: 18
+    },
+    txtContent: {
+        fontFamily: 'sansation',
+        fontSize: 18
+    },
 })
