@@ -20,6 +20,23 @@ export default function Data({ navigation }) {
     const myContext = useContext(appContext)
     //utiliser avec myContext.connected
 
+    var base64 = require('base-64');
+
+    var url = 'http://centrale.freelab.inno.jnlab.net/admin/ph.png';
+    var username = 'admin';
+    var password = '45dVbhutF91';
+                
+    var headers = new Headers();
+    // headers.append('Content-Type', 'image/json');
+    headers.append('Authorization', 'Basic' + base64.encode(username + ":" + password))
+
+    fetch(url, {method:'GET',
+                        headers: headers,
+                        credentials: 'admin:45dVbhutF91'
+                       })
+    .then(response => response.json())
+    .then(json => console.log(json))
+
     const showDailyData = () => {
         setDailyData(true)
         setPreviousDataPh(false)
@@ -105,7 +122,8 @@ export default function Data({ navigation }) {
         + "Dans le même propos, l’absorption des rayons lumineux signifie un réchauffement de l’eau. Il faut savoir que les océans "
         + "sont considérés comme le thermostat de la planète. Si le thermostat est plus chaud, la planète est plus chaude aussi. "
         + "La turbidité peut être visible à l'œil nu : on peut voir que l’eau est trouble, sa couleur change. C’est d’ailleurs une "
-        + "des caractéristiques utilisées pour la mesurer. Elle s’exprime en UTN (Unité de Turbidité Néphélométrique)."}
+        + "des caractéristiques utilisées pour la mesurer. Elle s’exprime en UTN (Unité de Turbidité Néphélométrique)."
+        +"\n" +"\n" +"\n" +"\n" +"\n" +"\n" +"\n" +"\n" +"\n" +"\n"}
     ]
 
     if (myContext.connected){ // Screen scientist
@@ -114,6 +132,7 @@ export default function Data({ navigation }) {
         <SafeAreaView style={globalStyles.container}>
             <View style={globalStyles.content}>
                 <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Données</Text>
+                <Text style={{marginTop:-15, marginBottom: 10}}>Les données ne sont pas vérifiées par un organisme</Text>
                 <Button 
                 style={styles.button} 
                 title='Données du jour'
@@ -139,7 +158,8 @@ export default function Data({ navigation }) {
                 <Image
                 style={styles.image}
                 source={{
-                uri: 'http://centrale.freelab.inno.jnlab.net/ph.png',
+                // uri: 'http://admin:45dVbhutF91@centrale.freelab.inno.jnlab.net/admin/ph.png',
+                uri: 'http://centrale.freelab.inno.jnlab.net/ph.png'
                 }}/>
                 }
 
@@ -168,44 +188,7 @@ export default function Data({ navigation }) {
                 uri: 'http://centrale.freelab.inno.jnlab.net/turbidite.png',
                 }}/>
                 }
-
-                {/* Montre les données précédentes, le commentaire est un wip*/}
-                {/* {previousData && 
-                <View style={{flex:1}}>
-                    <Image
-                        style={styles.image}
-                        source={{
-                        uri: 'http://centrale.freelab.inno.jnlab.net/ph.png',
-                        }}/>
-                    <Image
-                        style={styles.image}
-                        source={{
-                        uri: 'http://centrale.freelab.inno.jnlab.net/temp.png',
-                        }}/>
-                </View>}
-                <View style={{flex:2}}>
-                    <Image
-                        style={styles.image}
-                        source={{
-                        uri: 'http://centrale.freelab.inno.jnlab.net/turbidite.png',
-                        }}/>
-                </View> */}
-
-                {/* <Button 
-                style={styles.button} 
-                title='Informations sur les données'
-                onPress={showDataInfo}
-                />
-
-                Montre la signification des données
-                {dataInfo && <FlatList 
-                    data={fakeDataForDemo}
-                    renderItem={({ item }) => (
-                        <DataInfo item={item} />
-                    )}
-                    keyExtractor={item => item.variable}
-                />} */}
-                <Text>Les données ne sont pas vérifiées par un organisme</Text>
+                 
             </View>
         </SafeAreaView>
     )

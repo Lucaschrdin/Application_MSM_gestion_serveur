@@ -39,7 +39,7 @@ export default function Live({ route, navigation }) {
         <View style={globalStyles.container}>
             <View style={globalStyles.content}>
                 
-                <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Profitez du live !</Text>      
+                <Text style={{ ...globalStyles.title, paddingBottom: 23 }}>Caméra sous-marine</Text>      
                 
                 <View style={styles.video}>
                     <VideoPlayer

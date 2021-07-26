@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import login_scientists from '../screens/login_scientist';
+import login_scientists from '../screens/loginPrivate';
 import Connection from '../screens/connection';
-import Data2 from '../screens/data2';
 
 
 const Stack = createStackNavigator();

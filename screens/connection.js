@@ -5,7 +5,7 @@ import { NavigationEvents } from 'react-navigation';
 export default function Connection({route, navigation }) {
 
     const { onClick } = route.params
-    const backgroundImage = require('../assets/images/poseidon.jpg')
+    const backgroundImage = require('../assets/images/Poseidon2.jpg')
 
     return(
         <View >
