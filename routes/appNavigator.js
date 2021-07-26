@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import appBottomTabNavigator from './appBottomTabNavigator';
 import authenticationNavigator from './authenticationNavigator';
 import { createStackNavigator } from '@react-navigation/stack';
-import Live from '../screens/live';
 
 const Stack = createStackNavigator();
 

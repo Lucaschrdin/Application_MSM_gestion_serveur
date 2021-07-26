@@ -22,18 +22,6 @@ export default function DataInfo() {
 
 
 }
-
-// d = new Date();
-
-    // year = this.d.getFullYear();
-    // month = this.d.getMonth();
-    // day = this.d.getDate();
-    // hour = this.d.getHours();
-    // minute = this.d.getMinutes();
-    // second = this.d.getSeconds();
-
-    endTime = (this.year-1970)*(365*24*3600) + (this.month-1)*(31*24*3600) + (this.day-1)*(24*3600) + (this.hour-1)*(3600) +(this.minute-1)*(60) + this.second
-
     baseURL = 'https://www.hydrovu.com/public-api/v1/locations/5980597329854464/data?startTime=0';
 
     testURL = 'https://www.hydrovu.com/public-api/v1/locations/5980597329854464/data?startTime=0';
